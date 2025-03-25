@@ -1,6 +1,8 @@
-﻿namespace Catalog.API.Features.Products.CreateProduct;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public record CreateProductRequest(string Name, List<String> Category,
+namespace Catalog.API.Features.Products.CreateProduct;
+
+public record CreateProductRequest(string Name, List<string> Category,
 								string Description, string ImageFile, decimal Price);
 
 public record CreateProductResponse(Guid id);
