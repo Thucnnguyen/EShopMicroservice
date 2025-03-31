@@ -1,6 +1,7 @@
 ﻿
 using Catalog.API.Features.Products.QueryProduct;
 using Microsoft.AspNetCore.Mvc;
+using OpenTelemetry.Trace;
 
 namespace Catalog.API.Features.Products.GetProduct;
 
@@ -22,6 +23,10 @@ public class GetProductEnpoint : ICarterModule
                 //return result
                 var response = result.Adapt<GetProductResponse>();
                 return Results.Ok(response);
-            });
+            })
+            .WithName("GetProductById")
+            .Produces<GetProductResponse>(StatusCodes.Status200OK)
+            .ProducesProblem(StatusCodes.Status400BadRequest)
+            .WithSummary("Get product by id");
     }
 }
